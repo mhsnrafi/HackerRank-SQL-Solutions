@@ -1,0 +1,16 @@
+SELECT city, CHAR_LENGTH(city)
+FROM STATION
+where city = (
+    select min(city) from station
+    where char_length(city) =(
+        select min(char_length(city))
+        from station
+    )
+    )
+or city = (
+    select min(city)
+    from station
+    where char_length(city) = (
+    select MAX(CHAR_LENGTH(city))
+        FROM STATION)
+    );
